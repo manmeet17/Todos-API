@@ -4,7 +4,6 @@ const {Todo} = require('./../models/todo');
 
 var id  = '596120a01ca5d72906508528';
 
-//When id doesnt exist in the database it only returns null as the result and not an error
 if(!ObejctID.isValid(id)){
   console.log('ID not valid');
 }
@@ -23,6 +22,7 @@ Todo.findOne({
 
 Todo.findById(id).then((todos) => {
   if(!todos){
+    //When id doesnt exist in the database it only returns null as the result and not an error
     return console.log("Id not found");//This is for the case when the id is valid but doesnt exists in the database
   }
   console.log("Todo by ID",todos);
