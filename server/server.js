@@ -37,6 +37,7 @@ app.post('/todos',(req,res)=>{
   })
 });
 
+//Mongoose returns an array for find() function but mongodb driver didnt so thats why we used toArray()
 app.get('/todos',(req, res) =>{
   Todo.find().then((todos) =>{
     res.send({todos});

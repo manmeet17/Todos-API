@@ -23,8 +23,8 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,db) => {
 //toArray() returns a promise
 // console.log(db.collection("Todos").find());
 //find(_id:"595e3ab9f2cc1f2127509638") cant do this coz id is an ObjectID and not a string
-db.collection("Todos").find({
-  _id: ObjectID("595e505cfb985f2f8cb14465")
+db.collection("todos").find({
+  _id: ObjectID("596120a01ca5d72906508529")
 }).toArray().then((doc)=>{
   console.log("Success");
   console.log(JSON.stringify(doc,undefined,2));
