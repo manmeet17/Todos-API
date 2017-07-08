@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;//This tells mongoose to use the built in Promise implementation
-mongoose.connect("mongodb://localhost:27017/TodoApp");
+let db1 = {
+  localhost: "mongodb://localhost:27017/TodoApp",
+};
+mongoose.connect(process.env.MONGODB_URI || db1.localhost);
 
 module.exports = {
   mongoose
