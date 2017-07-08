@@ -58,7 +58,7 @@ app.get('/todos/:id',(req, res) =>{
       console.log("Couldnt find");
       return res.status(404).send();
     }
-    res.send(todo);
+    res.send({todo});
   },(e) =>{
     res.status(400).send(e);
   });
