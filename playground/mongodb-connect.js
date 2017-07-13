@@ -33,6 +33,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,db) => {
   },(err,res)=>{
     if(err)
     return console.log("Unable to insert todo",err);
+    console.log(res);
     console.log(JSON.stringify(res.ops[0]._id,undefined,2));
   });
   db.close();
