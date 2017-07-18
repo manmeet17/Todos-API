@@ -4,7 +4,7 @@ mongoose.Promise = global.Promise;//This tells mongoose to use the built in Prom
 let db1 = {
   localhost: "mongodb://localhost:27017/TodoApp",
 };
-mongoose.connect(db1.localhost || "mongodb://tarun:tarun12@ds153422.mlab.com:53422/todoapp");
+mongoose.connect("mongodb://tarun:tarun12@ds153422.mlab.com:53422/todoapp" || db1.localhost);
 
 module.exports = {
   mongoose
