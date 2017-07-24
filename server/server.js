@@ -102,8 +102,22 @@ app.patch('/todos/:id',(req,res) =>{
 app.post('/users',(req, res) =>{
   var body = _.pick(req.body,['email','password']);
   var user = new User(body);
-  user.save().then((user)=>{
-    res.send(user);
+
+  //Model method
+  //Custon model method we create
+  // User.findByToken()
+
+  //Instance method, works on the objects we create
+  // user.generateAuthToken()
+
+
+  user.save().then(()=>{
+    // res.send(user);
+    return user.generateAuthToken();
+  }).then((token)=>{
+    // Send token back as an http response header
+    //x-auth is a custom header to store jwt token
+    res.header('x-auth',token).send(user);
   }).catch((err)=>{
     res.status(400).send(err);
   });
