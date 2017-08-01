@@ -6,8 +6,10 @@ const {ObjectID} = require('mongodb');
 var {mongoose}=require("../db/mongoose");
 var {Todo}=require("../models/todo");
 var {User}=require("../models/user");
+var {authenticate}=require("../middleware/authenticate");
 const port = process.env.PORT || 3000;
 var app=express();
+
 
 app.use(bodyParser.json());//SEE NOTES
 
@@ -109,8 +111,6 @@ app.post('/users',(req, res) =>{
 
   //Instance method, works on the objects we create
   // user.generateAuthToken()
-
-
   user.save().then(()=>{
     // res.send(user);
     return user.generateAuthToken();
@@ -122,6 +122,11 @@ app.post('/users',(req, res) =>{
     res.status(400).send(err);
   });
 });
+
+app.get('/users/me',authenticate,(req, res) =>{
+  res.send(req.user);
+});
+
 
 app.listen(port,()=>{
   console.log(`Started up at port ${port}`);

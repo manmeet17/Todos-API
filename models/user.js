@@ -50,9 +50,31 @@ UserSchema.methods.generateAuthToken = function () {
     access,
     token
   });
-
   return this.save().then(() =>{
     return token;
+  });
+};
+
+//Model Method
+UserSchema.statics.findByToken = function (token) {
+  var User = this;
+  var decoded;
+
+  try {
+    decoded = jwt.verify(token,'abc123');
+  } catch (e) {
+    // return new Promise(function(resolve, reject) {
+    //   reject();
+    // });
+
+    //THis line does the exact same thing as above
+    return Promise.reject();
+  }
+
+  return User.findOne({
+    _id: decoded._id,
+    'tokens.token': token,
+    'tokens.access': 'auth'
   });
 };
 

@@ -13,5 +13,5 @@ var token = jwt.sign(data,'123abc')
 console.log(token);
 
 //verifys the token and secret and make sures data was not manipulaed
-var decode = jwt.verify(token,'123abc1');
+var decode = jwt.verify(token,'123abc');
 console.log(decode);
